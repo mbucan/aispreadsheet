@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        logicalFilePath="com/company/aispreadsheet/liquibase/changelog/030-measurement.xml">
+
+    <changeSet id="1" author="aispreadsheet">
+        <createTable tableName="AIS_MEASUREMENT_REPORT">
+            <column name="ID" type="${uuid.type}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="PK_AIS_MEASUREMENT_REPORT"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PLAN_NAME" type="varchar(255)"/>
+            <column name="CALYPSO_VERSION" type="varchar(50)"/>
+            <column name="PART_NAME" type="varchar(255)"/>
+            <column name="DRAWING_NO" type="varchar(100)"/>
+            <column name="PART_ID" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCH" type="varchar(100)"/>
+            <column name="WORKS_ORDER" type="varchar(100)"/>
+            <column name="OPERATION" type="varchar(100)"/>
+            <column name="MACHINE_ID_RAW" type="varchar(50)"/>
+            <column name="MACHINE_ID" type="${uuid.type}"/>
+            <column name="MILL_OPERATOR_RAW" type="varchar(100)"/>
+            <column name="MILL_OPERATOR_ID" type="${uuid.type}"/>
+            <column name="MILL_SHIFT" type="varchar(100)"/>
+            <column name="INSPECTOR_RAW" type="varchar(100)"/>
+            <column name="INSPECTOR_ID" type="${uuid.type}"/>
+            <column name="TRACEABILITY_DISCREPANCY" type="boolean"/>
+            <column name="CMM_NAME" type="varchar(255)"/>
+            <column name="MEASUREMENT_DATE_TIME" type="timestamp"/>
+            <column name="TEMPERATURE" type="varchar(50)"/>
+            <column name="PROBE" type="varchar(255)"/>
+            <column name="SOAK_START" type="timestamp"/>
+            <column name="PART_TEMP_AT_START" type="varchar(50)"/>
+            <column name="ALIGNMENT" type="varchar(500)"/>
+            <column name="INPUT_SOURCE" type="varchar(500)"/>
+            <column name="CHARACTERISTICS_TOTAL" type="int"/>
+            <column name="CHARACTERISTICS_IN_TOL" type="int"/>
+            <column name="CHARACTERISTICS_OUT_OF_TOL" type="int"/>
+            <column name="RESULT_" type="varchar(50)"/>
+            <column name="DISPOSITION_ROUTE" type="varchar(500)"/>
+            <column name="SOURCE_FILE_NAME" type="varchar(500)"/>
+            <column name="SOURCE_FILE" type="varchar(1024)"/>
+            <column name="IMPORTED_AT" type="timestamp"/>
+            <column name="CREATED_BY" type="varchar(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="aispreadsheet">
+        <addForeignKeyConstraint baseTableName="AIS_MEASUREMENT_REPORT" baseColumnNames="MACHINE_ID"
+                                 referencedTableName="AIS_SPINDLE" referencedColumnNames="ID"
+                                 constraintName="FK_AIS_MEASUREMENT_REPORT_ON_MACHINE"/>
+        <addForeignKeyConstraint baseTableName="AIS_MEASUREMENT_REPORT" baseColumnNames="MILL_OPERATOR_ID"
+                                 referencedTableName="AIS_EMPLOYEE" referencedColumnNames="ID"
+                                 constraintName="FK_AIS_MEASUREMENT_REPORT_ON_MILL_OPERATOR"/>
+        <addForeignKeyConstraint baseTableName="AIS_MEASUREMENT_REPORT" baseColumnNames="INSPECTOR_ID"
+                                 referencedTableName="AIS_EMPLOYEE" referencedColumnNames="ID"
+                                 constraintName="FK_AIS_MEASUREMENT_REPORT_ON_INSPECTOR"/>
+    </changeSet>
+
+    <changeSet id="3" author="aispreadsheet">
+        <createIndex indexName="IDX_AIS_MEASUREMENT_REPORT_PART_ID" tableName="AIS_MEASUREMENT_REPORT">
+            <column name="PART_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AIS_MEASUREMENT_REPORT_WORKS_ORDER" tableName="AIS_MEASUREMENT_REPORT">
+            <column name="WORKS_ORDER"/>
+        </createIndex>
+        <createIndex indexName="IDX_AIS_MEASUREMENT_REPORT_MACHINE" tableName="AIS_MEASUREMENT_REPORT">
+            <column name="MACHINE_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AIS_MEASUREMENT_REPORT_MILL_OPERATOR" tableName="AIS_MEASUREMENT_REPORT">
+            <column name="MILL_OPERATOR_ID"/>
+        </createIndex>
+        <createIndex indexName="IDX_AIS_MEASUREMENT_REPORT_INSPECTOR" tableName="AIS_MEASUREMENT_REPORT">
+            <column name="INSPECTOR_ID"/>
+        </createIndex>
+        <addUniqueConstraint tableName="AIS_MEASUREMENT_REPORT"
+                             columnNames="PART_ID, MEASUREMENT_DATE_TIME"
+                             constraintName="UQ_AIS_MEASUREMENT_REPORT_PART_DT"/>
+    </changeSet>
+
+    <changeSet id="4" author="aispreadsheet">
+        <createTable tableName="AIS_MEASUREMENT_CHARACTERISTIC">
+            <column name="ID" type="${uuid.type}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="PK_AIS_MEASUREMENT_CHARACTERISTIC"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REPORT_ID" type="${uuid.type}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ_NUMBER" type="int"/>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE_" type="varchar(50)"/>
+            <column name="TYPE_RAW" type="varchar(50)"/>
+            <column name="NOMINAL" type="decimal(19,4)"/>
+            <column name="ACTUAL" type="decimal(19,4)"/>
+            <column name="DEVIATION" type="decimal(19,4)"/>
+            <column name="TOL_MINUS" type="decimal(19,4)"/>
+            <column name="TOL_PLUS" type="decimal(19,4)"/>
+            <column name="OUT_OF_TOL" type="boolean"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="AIS_MEASUREMENT_CHARACTERISTIC" baseColumnNames="REPORT_ID"
+                                 referencedTableName="AIS_MEASUREMENT_REPORT" referencedColumnNames="ID"
+                                 constraintName="FK_AIS_MEASUREMENT_CHARACTERISTIC_ON_REPORT"/>
+    </changeSet>
+
+    <changeSet id="5" author="aispreadsheet">
+        <createIndex indexName="IDX_AIS_MEASUREMENT_CHARACTERISTIC_REPORT_SEQ"
+                     tableName="AIS_MEASUREMENT_CHARACTERISTIC">
+            <column name="REPORT_ID"/>
+            <column name="SEQ_NUMBER"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Reports and their characteristics are hard-deleted (no soft-delete traits),
+         so the composition cascade must be enforced by the database FK. -->
+    <changeSet id="6" author="aispreadsheet">
+        <dropForeignKeyConstraint baseTableName="AIS_MEASUREMENT_CHARACTERISTIC"
+                                  constraintName="FK_AIS_MEASUREMENT_CHARACTERISTIC_ON_REPORT"/>
+        <addForeignKeyConstraint baseTableName="AIS_MEASUREMENT_CHARACTERISTIC" baseColumnNames="REPORT_ID"
+                                 referencedTableName="AIS_MEASUREMENT_REPORT" referencedColumnNames="ID"
+                                 constraintName="FK_AIS_MEASUREMENT_CHARACTERISTIC_ON_REPORT"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

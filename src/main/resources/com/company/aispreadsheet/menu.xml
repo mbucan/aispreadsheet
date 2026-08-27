@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="vaadinspreadsheet" description="msg://com.company.aispreadsheet/menu_config.vaadinspreadsheet.description"
+          title="msg://com.company.aispreadsheet/menu_config.vaadinspreadsheet.title">
+        <item view="SpreadsheetNamedRangesChartView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetNamedRangesChart.title"
+              description="msg:///menu_config.SpreadsheetNamedRangesChartView.description"/>
+        <item view="SpreadsheetFormulasView" title="msg://com.company.aispreadsheet/menu.spreadsheetFormulas.title"
+              description="msg:///menu_config.SpreadsheetFormulasView.description"/>
+        <item view="SpreadsheetBasicStylingView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetBasicStyling.title"
+              description="msg:///menu_config.SpreadsheetBasicStylingView.description"/>
+        <item view="SpreadsheetGroupingView" title="msg://com.company.aispreadsheet/menu.spreadsheetGrouping.title"
+              description="msg:///menu_config.SpreadsheetGroupingView.description"/>
+        <item view="SpreadsheetReportModeView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetReportMode.title"
+              description="msg:///menu_config.SpreadsheetReportModeView.description"/>
+        <item view="SpreadsheetSimpleInvoiceView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetSimpleInvoice.title"
+              description="msg:///menu_config.SpreadsheetSimpleInvoiceView.description"/>
+        <item view="SpreadsheetFileUploadView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetFileUpload.title"
+              description="msg:///menu_config.SpreadsheetFileUploadView.description"/>
+        <item view="SpreadsheetComponentsView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetComponents.title"
+              description="msg:///menu_config.SpreadsheetComponentsView.description"/>
+        <item view="SpreadsheetChartView" title="msg://com.company.aispreadsheet/menu.spreadsheetChart.title"
+              description="msg:///menu_config.SpreadsheetChartView.description"/>
+        <item view="SpreadsheetEmbeddedChartsView"
+              title="msg://com.company.aispreadsheet/menu.spreadsheetEmbeddedCharts.title"
+              description="msg:///menu_config.SpreadsheetEmbeddedChartsView.description"/>
+    </menu>
+    <menu opened="true" id="application" title="msg://com.company.aispreadsheet/menu.application.title">
+        <item view="Employee.list" title="msg://com.company.aispreadsheet/menu.employee.title"/>
+        <item view="Spindle.list" title="msg://com.company.aispreadsheet/menu.spindle.title"/>
+        <item view="MeasurementReport.list" title="msg://com.company.aispreadsheet/menu.measurementReport.title"/>
+        <item view="MeasurementImportView" title="msg://com.company.aispreadsheet/menu.measurementImport.title"/>
+    </menu>
+    <menu id="aitls" title="msg://com.company.aispreadsheet/menu.aitls.title">
+        <item view="aitls_AiChatHubView" title="msg://io.jmix.aitoolsflowui.view.chathub/aiChatHubView.menu"/>
+        <item view="AiSpreadsheetView" title="msg://com.company.aispreadsheet/menu.aiSpreadsheet.title"/>
+    </menu>
+    <menu id="administration" description="msg://com.company.aispreadsheet/menu_config.administration.description"
+          title="msg://com.company.aispreadsheet/menu_config.administration.title">
+        <menu id="security" title="msg://com.company.aispreadsheet/menu.security.title">
+            <item view="User.list" title="msg://com.company.aispreadsheet.view.user/UserListView.title"/>
+            <item view="sec_ResourceRoleModel.list"
+                  title="msg://io.jmix.securityflowui.view.resourcerole/resourceRoleModelListView.menu"/>
+            <item view="sec_RowLevelRoleModel.list"
+                  title="msg://io.jmix.securityflowui.view.rowlevelrole/rowLevelRoleModelListView.menu"/>
+        </menu>
+        <menu id="datatools" title="msg://com.company.aispreadsheet/menu.datatools.title">
+            <item view="datatl_entityInspectorListView"
+                  title="msg://io.jmix.datatoolsflowui.view.entityinspector/listTitle"/>
+            <item view="datatl_dataModelListView"
+                  title="msg://io.jmix.datatoolsflowui.view.datamodel/entityModelListView.title"/>
+        </menu>
+    </menu>
+</menu-config>

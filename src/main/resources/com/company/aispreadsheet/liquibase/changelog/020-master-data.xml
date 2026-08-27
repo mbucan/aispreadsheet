@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        logicalFilePath="com/company/aispreadsheet/liquibase/changelog/020-master-data.xml">
+
+    <changeSet id="1" author="aispreadsheet">
+        <createTable tableName="AIS_EMPLOYEE">
+            <column name="ID" type="${uuid.type}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="PK_AIS_EMPLOYEE"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMPLOYEE_ID" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE_" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACTIVE" type="boolean"/>
+            <column name="CREATED_BY" type="varchar(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="aispreadsheet">
+        <createIndex indexName="IDX_AIS_EMPLOYEE_EMPLOYEE_ID"
+                     tableName="AIS_EMPLOYEE" unique="true">
+            <column name="EMPLOYEE_ID"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="3" author="aispreadsheet">
+        <createTable tableName="AIS_SPINDLE">
+            <column name="ID" type="${uuid.type}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="PK_AIS_SPINDLE"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMBER_MARK" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE_" type="varchar(100)"/>
+            <column name="ACTIVE" type="boolean"/>
+            <column name="CREATED_BY" type="varchar(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="aispreadsheet">
+        <createIndex indexName="IDX_AIS_SPINDLE_NUMBER_MARK"
+                     tableName="AIS_SPINDLE" unique="true">
+            <column name="NUMBER_MARK"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

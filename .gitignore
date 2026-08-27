@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS / misc
+.DS_Store
+Thumbs.db
+*.log
+
+# Environment / secrets
+.env
+*.local.properties
+
+# Local tooling / dev data
+.claude/
+.playwright-cli/
+.skills/
+.jmix/

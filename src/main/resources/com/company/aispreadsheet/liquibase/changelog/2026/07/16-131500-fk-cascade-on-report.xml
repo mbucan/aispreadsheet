@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS"
+        logicalFilePath="com/company/aispreadsheet/liquibase/changelog/2026/07/16-131500-fk-cascade-on-report.xml">
+
+    <!-- Reinstates ON DELETE CASCADE on the report->characteristic FK after the
+         Studio-generated changelog 2026/07/16-120600-c581d956.xml recreated it
+         without the cascade. The cascade is now also declared on the entity model
+         (@OnDeleteInverse(CASCADE) on MeasurementCharacteristic.report), so future
+         Studio diffs generate the constraint with the cascade instead of dropping it. -->
+    <changeSet id="1" author="aispreadsheet">
+        <dropForeignKeyConstraint baseTableName="AIS_MEASUREMENT_CHARACTERISTIC"
+                                  constraintName="FK_AIS_MEASUREMENT_CHARACTERISTIC_ON_REPORT"/>
+    </changeSet>
+    <changeSet id="2" author="aispreadsheet">
+        <addForeignKeyConstraint baseTableName="AIS_MEASUREMENT_CHARACTERISTIC" baseColumnNames="REPORT_ID"
+                                 referencedTableName="AIS_MEASUREMENT_REPORT" referencedColumnNames="ID"
+                                 constraintName="FK_AIS_MEASUREMENT_CHARACTERISTIC_ON_REPORT"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

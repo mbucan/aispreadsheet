@@ -1,0 +1,42 @@
+Plan;BLD-114_OP60_FINAL;Calypso Version;7.6.10
+Part Name;Compressor Blade Stage 1;Drawing No;DRG-88231-C
+Part ID;BLD-114-0057;Batch;B-2233
+Works Order;WO-55902;Operation;OP-060 Final Milling
+Machine ID;DMU-07;Machine Type;Hermle C 62 U
+Mill Operator;J.Barnes;Mill Shift;Late (14:00-22:00)
+Inspector;D.Hughes;CMM;Zeiss PRISMO Navigator 9/15/7
+Date;2026-07-12;Time;09:05:44
+Temperature;20.0 C;Probe;VAST XT gold, 3mm ruby
+Part Soak Start;2026-07-12 04:40:00;Part Temp at Start;20.1 C
+Alignment;Datum A-B-C (3-2-1) blade root;Input Source;DMIS program BLD114_OP60 rev 12
+Characteristic;Type;Nominal;Actual;Deviation;Tol-;Tol+;OutOfTol
+Dovetail_FlankAngle_L;Angle;65.0000;64.9921;-0.0079;-0.1000;0.1000;
+Dovetail_FlankAngle_R;Angle;65.0000;65.0064;0.0064;-0.1000;0.1000;
+Dovetail_Width;Distance;18.5000;18.4977;-0.0023;-0.0200;0.0200;
+Root_Flatness;Flatness;0.0000;0.0140;0.0140;0.0000;0.0200;
+Platform_Parallelism;Parallelism;0.0000;0.0190;0.0190;0.0000;0.0300;
+Platform_Height;Distance;42.0000;41.9958;-0.0042;-0.0500;0.0500;
+LE_Radius;Radius;1.2500;1.2833;0.0333;-0.0500;0.0500;
+TE_Radius;Radius;0.8000;0.8021;0.0021;-0.0500;0.0500;
+CoolingHole_Dia_01;Diameter;3.2000;3.2288;0.0288;-0.0250;0.0250;*
+CoolingHole_Pos_01;Position;0.0000;0.0270;0.0270;0.0000;0.0500;
+Aerofoil_ProfilePoint_P01;ProfilePoint;0.0000;-0.0060;-0.0060;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P02;ProfilePoint;0.0000;0.0050;0.0050;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P03;ProfilePoint;0.0000;0.0160;0.0160;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P04;ProfilePoint;0.0000;-0.0110;-0.0110;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P05;ProfilePoint;0.0000;0.0000;0.0000;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P06;ProfilePoint;0.0000;0.0110;0.0110;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P07;ProfilePoint;0.0000;-0.0160;-0.0160;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P08;ProfilePoint;0.0000;-0.0050;-0.0050;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P09;ProfilePoint;0.0000;0.0060;0.0060;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P10;ProfilePoint;0.0000;0.0170;0.0170;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P11;ProfilePoint;0.0000;-0.0100;-0.0100;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P12;ProfilePoint;0.0000;0.0010;0.0010;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P13;ProfilePoint;0.0000;0.0120;0.0120;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P14;ProfilePoint;0.0000;-0.0150;-0.0150;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P15;ProfilePoint;0.0000;-0.0040;-0.0040;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P16;ProfilePoint;0.0000;0.0070;0.0070;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P17;ProfilePoint;0.0000;0.0180;0.0180;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P18;ProfilePoint;0.0000;-0.0090;-0.0090;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P19;ProfilePoint;0.0000;0.0020;0.0020;-0.0500;0.0500;
+Aerofoil_ProfilePoint_P20;ProfilePoint;0.0000;0.0130;0.0130;-0.0500;0.0500;

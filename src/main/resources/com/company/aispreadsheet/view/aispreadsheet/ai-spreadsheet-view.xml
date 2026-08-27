@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:spreadsheet="http://jmix.io/schema/vaadin-spreadsheet/ui"
+      title="msg://AiSpreadsheetView.title">
+    <layout padding="false" spacing="false" expand="mainSplit">
+        <split id="mainSplit" width="100%" height="100%" splitterPosition="40">
+            <vbox id="chatBox" height="100%" width="100%" padding="false" spacing="false"
+                  expand="chatFragment">
+                <fragment id="chatFragment"
+                          class="io.jmix.aitoolsflowui.view.chat.AiChatFragment"/>
+            </vbox>
+            <vbox id="sheetBox" height="100%" width="100%" padding="false" spacing="false"
+                  expand="aiSpreadsheet">
+                <hbox id="sheetToolbar" width="100%" padding="true" alignItems="CENTER"
+                      justifyContent="END">
+                    <button id="newConversationBtn" text="msg://newConversationBtn.text"/>
+                    <button id="downloadBtn" text="msg://downloadBtn.text" themeNames="primary"/>
+                </hbox>
+                <spreadsheet:spreadsheet id="aiSpreadsheet" width="100%"/>
+            </vbox>
+        </split>
+    </layout>
+</view>

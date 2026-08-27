@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:spreadsheet="http://jmix.io/schema/vaadin-spreadsheet/ui"
+      xmlns:charts="http://jmix.io/schema/charts/ui"
+      title="msg://SpreadsheetChartView.title">
+    <layout padding="false" spacing="false" expand="demoSpreadsheet">
+        <hbox id="chartsBox" width="100%" height="22em" padding="false" spacing="false">
+            <charts:chart id="pieChart" width="100%" height="100%">
+                <charts:legend/>
+                <charts:series>
+                    <charts:pie/>
+                </charts:series>
+            </charts:chart>
+            <charts:chart id="columnChart" width="100%" height="100%">
+                <charts:series>
+                    <charts:bar/>
+                </charts:series>
+                <charts:xAxes>
+                    <charts:xAxis/>
+                </charts:xAxes>
+                <charts:yAxes>
+                    <charts:yAxis/>
+                </charts:yAxes>
+            </charts:chart>
+        </hbox>
+        <spreadsheet:spreadsheet id="demoSpreadsheet" width="100%"/>
+    </layout>
+</view>

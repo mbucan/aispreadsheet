@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS"
+        logicalFilePath="com/company/aispreadsheet/liquibase/changelog/2026/08/26-171422-c581d956.xml">
+    <!-- Drops the legacy Reports add-on tables. They only ever existed in databases created
+         while the reports changelog was included; a fresh database (e.g. the in-memory test DB)
+         never has them, so every changeset is guarded by an existence precondition and is
+         MARK_RAN where there is nothing to drop. Preconditions are not part of the Liquibase
+         checksum, so databases that already executed these changesets are unaffected. -->
+    <changeSet id="1" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyTableName="REPORT_EXECUTION"
+                                        foreignKeyName="FK_REPORT_EXEC_TO_REPORT"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="REPORT_EXECUTION" constraintName="FK_REPORT_EXEC_TO_REPORT"/>
+    </changeSet>
+    <changeSet id="2" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyTableName="REPORT_TEMPLATE"
+                                        foreignKeyName="FK_REPORT_TEMPLATE_TO_REPORT"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="REPORT_TEMPLATE" constraintName="FK_REPORT_TEMPLATE_TO_REPORT"/>
+    </changeSet>
+    <changeSet id="3" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyTableName="REPORT_REPORT"
+                                        foreignKeyName="FK_REPORT_TO_DEF_TEMPLATE"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="REPORT_REPORT" constraintName="FK_REPORT_TO_DEF_TEMPLATE"/>
+    </changeSet>
+    <changeSet id="4" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyTableName="REPORT_REPORT"
+                                        foreignKeyName="FK_REPORT_TO_REPORT_GROUP"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="REPORT_REPORT" constraintName="FK_REPORT_TO_REPORT_GROUP"/>
+    </changeSet>
+    <changeSet id="5" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="REPORT_EXECUTION"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="REPORT_EXECUTION"/>
+    </changeSet>
+    <changeSet id="6" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="REPORT_GROUP"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="REPORT_GROUP"/>
+    </changeSet>
+    <changeSet id="7" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="REPORT_REPORT"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="REPORT_REPORT"/>
+    </changeSet>
+    <changeSet id="8" author="aispreadsheet">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="REPORT_TEMPLATE"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true" tableName="REPORT_TEMPLATE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://MeasurementReportDetailView.title"
+      focusComponent="identificationForm">
+    <data>
+        <instance id="measurementReportDc"
+                  class="com.company.aispreadsheet.entity.MeasurementReport">
+            <fetchPlan extends="_base">
+                <property name="machine" fetchPlan="_instance_name"/>
+                <property name="millOperator" fetchPlan="_instance_name"/>
+                <property name="inspector" fetchPlan="_instance_name"/>
+                <property name="characteristics" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="measurementReportDl"/>
+            <collection id="characteristicsDc" property="characteristics"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveCloseAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <h4 text="msg://section.identification"/>
+        <formLayout id="identificationForm" dataContainer="measurementReportDc">
+            <textField id="partIdField" property="partId"/>
+            <textField id="partNameField" property="partName"/>
+            <textField id="drawingNoField" property="drawingNo"/>
+            <textField id="batchField" property="batch"/>
+            <textField id="planNameField" property="planName"/>
+            <textField id="calypsoVersionField" property="calypsoVersion"/>
+        </formLayout>
+
+        <h4 text="msg://section.traceability"/>
+        <span id="discrepancyBadge"
+              text="msg://traceabilityDiscrepancy.badge"
+              themeNames="badge error"
+              visible="false"/>
+        <formLayout id="traceabilityForm" dataContainer="measurementReportDc">
+            <textField id="worksOrderField" property="worksOrder"/>
+            <textField id="operationField" property="operation"/>
+            <textField id="machineIdRawField" property="machineIdRaw"/>
+            <entityPicker id="machineField" property="machine" readOnly="true"/>
+            <textField id="millOperatorRawField" property="millOperatorRaw"/>
+            <entityPicker id="millOperatorField" property="millOperator" readOnly="true"/>
+            <textField id="millShiftField" property="millShift"/>
+            <entityPicker id="inspectorField" property="inspector" readOnly="true"/>
+            <textField id="inspectorRawField" property="inspectorRaw"/>
+            <checkbox id="traceabilityDiscrepancyField" property="traceabilityDiscrepancy" readOnly="true"/>
+        </formLayout>
+
+        <h4 text="msg://section.conditions"/>
+        <formLayout id="conditionsForm" dataContainer="measurementReportDc">
+            <textField id="cmmNameField" property="cmmName"/>
+            <dateTimePicker id="measurementDateTimeField" property="measurementDateTime"/>
+            <textField id="temperatureField" property="temperature"/>
+            <textField id="probeField" property="probe"/>
+            <dateTimePicker id="soakStartField" property="soakStart"/>
+            <textField id="partTempAtStartField" property="partTempAtStart"/>
+            <textField id="alignmentField" property="alignment"/>
+            <textField id="inputSourceField" property="inputSource"/>
+        </formLayout>
+
+        <h4 text="msg://section.result"/>
+        <formLayout id="resultForm" dataContainer="measurementReportDc">
+            <integerField id="characteristicsTotalField" property="characteristicsTotal"/>
+            <integerField id="characteristicsInTolField" property="characteristicsInTol"/>
+            <integerField id="characteristicsOutOfTolField" property="characteristicsOutOfTol"/>
+            <comboBox id="resultField" property="result"/>
+            <textField id="dispositionRouteField" property="dispositionRoute"/>
+        </formLayout>
+
+        <h4 text="msg://section.importMeta"/>
+        <formLayout id="importForm" dataContainer="measurementReportDc">
+            <textField id="sourceFileNameField" property="sourceFileName" readOnly="true"/>
+            <dateTimePicker id="importedAtField" property="importedAt" readOnly="true"/>
+        </formLayout>
+        <button id="downloadButton" text="msg://downloadButton.text" enabled="false"/>
+
+        <h4 text="msg://section.characteristics"/>
+        <dataGrid id="characteristicsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="characteristicsDc">
+            <columns resizable="true">
+                <column property="sequence"/>
+                <column property="name"/>
+                <column property="type"/>
+                <column property="typeRaw"/>
+                <column property="nominal"/>
+                <column property="actual"/>
+                <column property="deviation"/>
+                <column property="tolMinus"/>
+                <column property="tolPlus"/>
+                <column property="outOfTol"/>
+            </columns>
+        </dataGrid>
+
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveCloseAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

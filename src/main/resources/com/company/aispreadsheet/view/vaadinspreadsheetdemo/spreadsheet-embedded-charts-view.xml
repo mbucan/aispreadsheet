@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:spreadsheet="http://jmix.io/schema/vaadin-spreadsheet/ui"
+      title="msg://SpreadsheetEmbeddedChartsView.title">
+    <layout padding="false" expand="demoSpreadsheet">
+        <spreadsheet:spreadsheet id="demoSpreadsheet" width="100%" chartsEnabled="true"/>
+    </layout>
+</view>

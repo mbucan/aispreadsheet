@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:spreadsheet="http://jmix.io/schema/vaadin-spreadsheet/ui"
+      title="msg://SpreadsheetBasicStylingView.title">
+    <layout padding="false" spacing="false" expand="demoSpreadsheet">
+        <hbox id="stylingToolbar" width="100%" padding="true" spacing="true" alignItems="CENTER">
+            <button id="boldButton" icon="vaadin:bold" themeNames="tertiary"/>
+        </hbox>
+        <spreadsheet:spreadsheet id="demoSpreadsheet" width="100%"/>
+    </layout>
+</view>

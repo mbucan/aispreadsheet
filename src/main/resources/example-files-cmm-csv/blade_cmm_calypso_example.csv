@@ -1,0 +1,76 @@
+Plan;TurbineBlade_HPT_Stage1;Calypso Version;7.6.10
+Part Name;HPT Blade Stage 1;Drawing No;TB-1001-A
+Part ID;SN-2026-04471;Batch;C-2278
+Operator;M.Kovac;CMM;ZEISS PRISMO navigator 9/15/7
+Date;2026-07-14;Time;09:42:17
+Temperature;20.1 C;Probe;VAST gold, 3mm ruby stylus
+Alignment;Datum A (platform) / Datum B (fir-tree flank) / Datum C (LE stack point)
+;;;;;;;
+Characteristic;Type;Nominal;Actual;Deviation;Tol -;Tol +;Out of Tol
+Datum_A_Flatness_Platform;Flatness;0.0000;0.0082;0.0082;0.0000;0.0200;
+Datum_B_Angle_FirTree;Angle;45.0000;45.0031;0.0031;-0.0500;0.0500;
+Blade_Total_Length_Z;Distance;92.5000;92.5124;0.0124;-0.0250;0.0250;
+Tip_Radius_from_Axis;Radius;318.4000;318.4187;0.0187;-0.0250;0.0250;
+Profile_SectA_25span_Point01;ProfilePoint;0.0000;0.0114;0.0114;-0.0500;0.0500;
+Profile_SectA_25span_Point02;ProfilePoint;0.0000;0.0158;0.0158;-0.0500;0.0500;
+Profile_SectA_25span_Point03;ProfilePoint;0.0000;-0.0091;-0.0091;-0.0500;0.0500;
+Profile_SectA_25span_Point04;ProfilePoint;0.0000;-0.0203;-0.0203;-0.0500;0.0500;
+Profile_SectA_25span_Point05;ProfilePoint;0.0000;0.0342;0.0342;-0.0500;0.0500;
+Profile_SectA_LineProfile;LineProfile;0.0000;0.0684;0.0684;0.0000;0.1000;
+Profile_SectB_50span_Point01;ProfilePoint;0.0000;0.0225;0.0225;-0.0500;0.0500;
+Profile_SectB_50span_Point02;ProfilePoint;0.0000;0.0187;0.0187;-0.0500;0.0500;
+Profile_SectB_50span_Point03;ProfilePoint;0.0000;-0.0134;-0.0134;-0.0500;0.0500;
+Profile_SectB_50span_Point04;ProfilePoint;0.0000;0.0419;0.0419;-0.0500;0.0500;
+Profile_SectB_50span_Point05;ProfilePoint;0.0000;0.0523;0.0523;-0.0500;0.0500;*
+Profile_SectB_LineProfile;LineProfile;0.0000;0.0912;0.0912;0.0000;0.1000;
+Profile_SectC_75span_Point01;ProfilePoint;0.0000;0.0098;0.0098;-0.0500;0.0500;
+Profile_SectC_75span_Point02;ProfilePoint;0.0000;-0.0156;-0.0156;-0.0500;0.0500;
+Profile_SectC_75span_Point03;ProfilePoint;0.0000;0.0211;0.0211;-0.0500;0.0500;
+Profile_SectC_75span_Point04;ProfilePoint;0.0000;0.0176;0.0176;-0.0500;0.0500;
+Profile_SectC_75span_Point05;ProfilePoint;0.0000;-0.0243;-0.0243;-0.0500;0.0500;
+Profile_SectC_LineProfile;LineProfile;0.0000;0.0787;0.0787;0.0000;0.1000;
+Chord_Length_SectA;Distance;42.3000;42.3156;0.0156;-0.0500;0.0500;
+Chord_Length_SectB;Distance;40.1000;40.0891;-0.0109;-0.0500;0.0500;
+Chord_Length_SectC;Distance;38.6000;38.6212;0.0212;-0.0500;0.0500;
+Stagger_Angle_SectA;Angle;38.5000;38.5142;0.0142;-0.1000;0.1000;
+Stagger_Angle_SectB;Angle;42.2000;42.1874;-0.0126;-0.1000;0.1000;
+Stagger_Angle_SectC;Angle;46.8000;46.8231;0.0231;-0.1000;0.1000;
+LE_Thickness_SectA;Distance;1.2000;1.2087;0.0087;-0.0250;0.0250;
+LE_Thickness_SectB;Distance;1.1500;1.1478;-0.0022;-0.0250;0.0250;
+LE_Thickness_SectC;Distance;1.1000;1.1134;0.0134;-0.0250;0.0250;
+TE_Thickness_SectA;Distance;0.7500;0.7521;0.0021;-0.0250;0.0250;
+TE_Thickness_SectB;Distance;0.7200;0.7189;-0.0011;-0.0250;0.0250;
+TE_Thickness_SectC;Distance;0.7000;0.7268;0.0268;-0.0250;0.0250;*
+Twist_SectA_to_SectC;Angle;8.3000;8.3187;0.0187;-0.1500;0.1500;
+FirTree_Pitch_Lobe1;Distance;6.5000;6.5008;0.0008;-0.0100;0.0100;
+FirTree_Pitch_Lobe2;Distance;6.5000;6.4994;-0.0006;-0.0100;0.0100;
+FirTree_Pitch_Lobe3;Distance;6.5000;6.5011;0.0011;-0.0100;0.0100;
+FirTree_FlankAngle_Lobe1_L;Angle;40.0000;40.0021;0.0021;-0.0330;0.0330;
+FirTree_FlankAngle_Lobe1_R;Angle;40.0000;39.9987;-0.0013;-0.0330;0.0330;
+FirTree_FlankAngle_Lobe2_L;Angle;40.0000;40.0034;0.0034;-0.0330;0.0330;
+FirTree_FlankAngle_Lobe2_R;Angle;40.0000;40.0009;0.0009;-0.0330;0.0330;
+FirTree_FlankAngle_Lobe3_L;Angle;40.0000;39.9972;-0.0028;-0.0330;0.0330;
+FirTree_FlankAngle_Lobe3_R;Angle;40.0000;40.0018;0.0018;-0.0330;0.0330;
+FirTree_Flank_Profile_Lobe1;LineProfile;0.0000;0.0061;0.0061;0.0000;0.0150;
+FirTree_Flank_Profile_Lobe2;LineProfile;0.0000;0.0078;0.0078;0.0000;0.0150;
+FirTree_Flank_Profile_Lobe3;LineProfile;0.0000;0.0092;0.0092;0.0000;0.0150;
+FirTree_Symmetry_to_DatumB;Symmetry;0.0000;0.0087;0.0087;0.0000;0.0200;
+Platform_Height_to_DatumA;Distance;12.0000;12.0043;0.0043;-0.0250;0.0250;
+Platform_Parallelism_to_A;Parallelism;0.0000;0.0112;0.0112;0.0000;0.0300;
+Platform_Perpendicularity_B;Perpendicularity;0.0000;0.0134;0.0134;0.0000;0.0300;
+Stack_Axis_Position_X;Position;0.0000;0.0176;0.0176;0.0000;0.0500;
+Stack_Axis_Position_Y;Position;0.0000;0.0231;0.0231;0.0000;0.0500;
+Tip_Shroud_SealFin1_Height;Distance;3.2000;3.2041;0.0041;-0.0250;0.0250;
+Tip_Shroud_SealFin2_Height;Distance;3.2000;3.1987;-0.0013;-0.0250;0.0250;
+CoolingHole_Row1_H01_Pos;Position;0.0000;0.0821;0.0821;0.0000;0.2000;
+CoolingHole_Row1_H01_Dia;Diameter;0.6000;0.6134;0.0134;-0.0500;0.0500;
+CoolingHole_Row1_H02_Pos;Position;0.0000;0.1147;0.1147;0.0000;0.2000;
+CoolingHole_Row1_H02_Dia;Diameter;0.6000;0.5912;-0.0088;-0.0500;0.0500;
+CoolingHole_Row1_H03_Pos;Position;0.0000;0.0654;0.0654;0.0000;0.2000;
+CoolingHole_Row1_H03_Dia;Diameter;0.6000;0.6087;0.0087;-0.0500;0.0500;
+;;;;;;;
+Summary;;;;;;;
+Characteristics Total;62;;;;;;
+Characteristics In Tolerance;60;;;;;;
+Characteristics Out of Tolerance;2;;;;;;
+Result;REWORK / CONCESSION REVIEW;;;;;;

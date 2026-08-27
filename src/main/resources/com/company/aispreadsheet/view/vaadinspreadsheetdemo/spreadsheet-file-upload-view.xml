@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:spreadsheet="http://jmix.io/schema/vaadin-spreadsheet/ui"
+      title="msg://SpreadsheetFileUploadView.title">
+    <layout padding="false" spacing="false" expand="demoSpreadsheet">
+        <hbox id="uploadToolbar" width="100%" padding="true" alignItems="CENTER">
+            <fileUploadField id="uploadField"
+                             label="msg://uploadField.label"
+                             acceptedFileTypes=".xlsx,.xls"
+                             dropAllowed="true"/>
+        </hbox>
+        <spreadsheet:spreadsheet id="demoSpreadsheet" width="100%"/>
+    </layout>
+</view>

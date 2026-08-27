@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://MeasurementImportView.title">
+    <layout>
+        <vbox spacing="true" maxWidth="60em">
+            <span text="msg://importHint.text"/>
+            <fileUploadField id="fileUploadField"
+                             label="msg://fileUploadField.label"
+                             acceptedFileTypes=".csv,.txt"
+                             dropAllowed="true"/>
+            <button id="openReportButton"
+                    text="msg://openReportButton.text"
+                    enabled="false"/>
+            <textArea id="warningsArea"
+                      label="msg://warningsArea.label"
+                      readOnly="true"
+                      width="100%"
+                      minHeight="12em"
+                      visible="false"/>
+        </vbox>
+    </layout>
+</view>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://MeasurementReportListView.title"
+      focusComponent="reportsDataGrid">
+    <data>
+        <collection id="reportsDc"
+                    class="com.company.aispreadsheet.entity.MeasurementReport">
+            <fetchPlan extends="_base">
+                <property name="machine" fetchPlan="_instance_name"/>
+                <property name="millOperator" fetchPlan="_instance_name"/>
+                <property name="inspector" fetchPlan="_instance_name"/>
+            </fetchPlan>
+            <loader id="reportsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from MeasurementReport e order by e.measurementDateTime desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="reportsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" wrap="true" width="100%">
+            <startSlot>
+                <button id="readButton" action="reportsDataGrid.readAction"/>
+                <button id="removeButton" action="reportsDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="reportsDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="reportsDataGrid"
+                  width="100%"
+                  columnReorderingAllowed="true"
+                  minHeight="20em"
+                  dataContainer="reportsDc">
+            <actions>
+                <action id="readAction" type="list_read"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="partId"/>
+                <column property="drawingNo"/>
+                <column property="worksOrder"/>
+                <column property="machine"/>
+                <column property="millOperator"/>
+                <column property="inspector"/>
+                <column property="measurementDateTime"/>
+                <column property="result"/>
+                <column property="characteristicsOutOfTol"/>
+                <column property="traceabilityDiscrepancy"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
