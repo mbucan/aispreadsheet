@@ -25,7 +25,8 @@
     * [The Spindle Analysis Tool](#the-spindle-analysis-tool)
     * [Skills and the System Prompt](#skills-and-the-system-prompt)
     * [Security](#security)
-  * [Running the Example](#running-the-example)
+  * [Testing](#testing)
+  * [Running this example](#running-this-example)
   * [Conclusion](#conclusion)
 <!-- TOC -->
 
