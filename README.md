@@ -86,7 +86,7 @@ The `com.company.aispreadsheet.view.vaadinspreadsheetdemo` package contains ten 
 
 Each demo view has a matching XML descriptor (e.g. `spreadsheet-components-view.xml`) in `src/main/resources/com/company/aispreadsheet/view/vaadinspreadsheetdemo/`. The package also holds two supporting non-view classes: `DemoComponentFactory` and `TestSheets` (which points at the sample `.xlsx` files in `resources/.../testsheets/`). Access is granted via `VaadinSpreadsheetDemoRole`.
  
-[Demo Excel files are here.](com/company/aispreadsheet/testsheets)
+[Demo Excel files are here.](https://github.com/mbucan/aispreadsheet/tree/main/src/main/resources/com/company/aispreadsheet/testsheets)
 
 ## The Example: a Gas Turbine Blade Machine Shop
 
