@@ -85,8 +85,8 @@ The `com.company.aispreadsheet.view.vaadinspreadsheetdemo` package contains ten 
 ![Spreadsheet Demo](src/main/resources/images/spreadsheet_demo.png)
 
 Each demo view has a matching XML descriptor (e.g. `spreadsheet-components-view.xml`) in `src/main/resources/com/company/aispreadsheet/view/vaadinspreadsheetdemo/`. The package also holds two supporting non-view classes: `DemoComponentFactory` and `TestSheets` (which points at the sample `.xlsx` files in `resources/.../testsheets/`). Access is granted via `VaadinSpreadsheetDemoRole`.
-
-
+ 
+[Demo Excel files are here.](com/company/aispreadsheet/testsheets)
 
 ## The Example: a Gas Turbine Blade Machine Shop
 
@@ -163,7 +163,9 @@ Automatic file output to a directory is standard Calypso functionality, and it i
 
 The typical integration pattern is: Calypso writes one file per run into a network share, and a watcher service on the consuming side polls the directory, parses new files, and archives them after a successful import. That is exactly what our application does: a scheduled job scans the share, parses the header block and characteristic rows into entities, then moves the file to a `processed/` subfolder. Files are written atomically at run end, but it is still worth guarding against partial reads by checking that the summary block is present before parsing.
 
-<!-- TODO: code snippet: Quartz job + parser service from the demo app -->
+Instead of implementing the watcher service and importing many measurement reports, we will seed the database with an example dataset, as this is more convenient for development and testing. We will still implement a manual file upload view, so individual reports can be imported without the watcher service.
+
+[Example measurement report](src/main/resources/example-files-cmm-csv/blade_cmm_calypso_example.csv) 
 
 ### The Dataset
 
@@ -206,9 +208,6 @@ That signature is consistent with axis calibration drift, spindle thermal growth
 
 Will the AI Tools spot it? We shall see.
 
-<!-- TODO: chart/screenshot of the DMU-02 drift once plotted in the spreadsheet -->
-
-<!-- Practical note (dev only, probably cut from published version): the seeder only fills an empty MeasurementReport table; delete existing reports (deletes cascade) or wipe the dev DB before restart to get this dataset. -->
 
 ## Implementation
 
