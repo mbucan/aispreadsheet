@@ -1,5 +1,8 @@
 # Vaadin Spreadsheet Meets AI Tools in Jmix: a Quality-Control Story
 
+>This is a demo example about using Vaadin Spreadsheet, and combining it with Jmix AI Tools in Jmix framework applications. The application itself or its code are not production ready and should not be used in production environments.
+
+
 <!-- TOC -->
 * [Vaadin Spreadsheet Meets AI Tools in Jmix: a Quality-Control Story](#vaadin-spreadsheet-meets-ai-tools-in-jmix-a-quality-control-story)
   * [Introduction](#introduction)
@@ -119,7 +122,7 @@ Located downstream of the combustion chamber, gas turbine blades convert the ene
 ### The Process
 
 1. **Machining**: each blade takes a full 8-hour shift on its spindle, starting at shift start; one blade per spindle per shift, ten blades in progress at any time.
-2. **Thermal soak**: after milling, the blade moves to the climate-controlled measuring room (~20 °C) and soaks for about 4 hours so it is at reference temperature before probing.
+2. **Thermal soak**: after milling, the blade moves to the climate-controlled measuring room (~20 °C) and soaks for about 2 hours (in reality much longer) so it is at reference temperature before probing.
 3. **CMM measurement**: roughly 1–2 hours after machining ends, the inspector runs the Calypso measurement plan `BLD-114_OP60_FINAL` (DMIS program `BLD114_OP60`), aligned on the blade-root datum scheme A-B-C (3-2-1). The plan checks **90 characteristics** per blade:
     - dovetail root: flank angles (65° ±0.1°), width, depth, root flatness and perpendicularity;
     - platform: parallelism, symmetry, height and width;
