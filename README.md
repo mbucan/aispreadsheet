@@ -48,7 +48,7 @@ Our sample data will intentionally contain planted stories for the analysis to a
 
 The [official documentation](https://vaadin.com/docs/latest/components/spreadsheet) is the best starting point for the Vaadin Spreadsheet, complemented by the [API documentation](https://vaadin.com/api/com.vaadin/vaadin-spreadsheet/2.1.1/overview-summary.html). Vaadin also publishes a [live demo](https://demo.vaadin.com/spreadsheet/), with its [source code](https://github.com/vaadin/spreadsheet-demo) available on GitHub.
 
-To see how the component behaves inside a Jmix application, we recreated that demo as Jmix views, substituting Jmix add-ons and components wherever an equivalent exists, such as Jmix Charts and the standard Jmix visual components.
+To see how the component behaves inside a Jmix application, we recreated that demo as Jmix views, substituting Vaadin with Jmix add-ons and components wherever an equivalent exists, such as Jmix Charts and the standard Jmix visual components.
 
 The `com.company.aispreadsheet.view.vaadinspreadsheetdemo` package contains ten demo views:
 
@@ -333,12 +333,12 @@ We can ask the AI Model various related questions, such as:
 
 ![Various questions](src/main/resources/images/varoius_questions.png)
 
-or, from the begining of the article:
+or, from the beginning of the article:
 `how are my spindles doing`
 
 ![Findings](src/main/resources/images/findings.png)
 
-The difference is that for the anomalies report we implemented a deterministic tool, while the question that does not invoke the tooling are handled by LLM and thus the answer's accuracy depends on the model capabilities. 
+The difference is that for the anomalies report we implemented a deterministic tool, while the questions that does not invoke the tooling are handled by LLM and thus the answer's accuracy depends on the model capabilities. 
 
 
 ## Running this example
@@ -369,7 +369,7 @@ The spreadsheet and the AI assistant turn out to be a genuine power-user combo, 
 The second lesson is about where to put the intelligence. A capable model with the generic data-querying tools could answer most of our questions on its own; given enough measurements it would probably even notice that DMU-02 looks odd. We still wrote a dedicated analysis tool, for two reasons:
 
 - **Determinism.** The drift regressions, z-scores and Cpk values are computed in plain, unit-tested Java, so the same data produces the same findings every time, findings a quality engineer can sign off on. The model narrates and formats the result, but it cannot miscalculate it, and the system prompt forbids it from inventing numbers. An LLM eyeballing 11,250 values would give a plausible answer today and a slightly different one tomorrow; that is fine for brainstorming and unacceptable for a maintenance decision.
-- **Token economy.** The raw dataset never enters the context window. The tool process the measurements in the JVM and hands the model a compact structured summary, a few kilobytes instead of megabytes of rows. That makes every question dramatically cheaper and faster, keeps the conversation well within context limits, and is exactly why the demo runs comfortably on a small, inexpensive model rather than requiring a frontier one.
+- **Token economy.** The raw dataset never enters the context window. The tool processes the measurements in the JVM and hands the model a compact structured summary, a few kilobytes instead of megabytes of rows. That makes every question dramatically cheaper and faster, keeps the conversation well within context limits, and is exactly why the demo runs comfortably on a small, inexpensive model rather than requiring a frontier one.
 
 The pattern generalizes: let the model do language, orchestration and judgment; let tools do arithmetic, data access and anything that must be reproducible. The skills embedded in the tool descriptions then bridge the two, teaching the model to use the deterministic machinery well.
 
