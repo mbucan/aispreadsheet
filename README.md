@@ -342,75 +342,78 @@ The difference is that for the anomalies report we implemented a deterministic t
 Prompting for individual spindle or fleet process sigma can therefore result in erroneous LLM answers. To mitigate that, we either need to make a proper tool, or precise prompts.
 These are the examples of good prompts:
 
-`
-Requirement: overall process sigma for the entire fleet for the current week, derived from raw measurement data rather than the Cpk-based figure in the fleet report. The calculation is to follow standard shop-floor practice.
+>
+>Requirement: overall process sigma for the entire fleet for the current week, derived from raw measurement data rather than the Cpk-based figure in the fleet report. The calculation is to follow standard shop-floor practice.
+>
+>Data extraction
+>
+>Retrieve every measurement from the MeasurementCharacteristic records across all ten spindles. Review the domain model before querying. Restrict the dataset to two-sided characteristics: retain rows where tolMinus is below zero and exclude form and position characteristics. For each row, capture the report's machine number mark, name, deviation, tolMinus, tolPlus and outOfTol.
+>
+>The expected volume is approximately 9,375 measurements (125 blades × 75 characteristics). Page through the records until the full set has been retrieved; a sample is not acceptable. If the full set cannot be loaded in a single pass, process one spindle at a time, approximately 975 rows each.
+>
+>Data sheet
+>
+>Place the raw rows on a Data sheet, one measurement per row, sorted by spindle so that each machine's rows are contiguous. Add a column expressing each deviation as a fraction of its own upper tolerance (deviation ÷ tolPlus). This normalises every characteristic and every machine to a common scale so that the fleet can be treated as a single process.
+>
+>Summary sheet
+>
+>Provide a Summary sheet built entirely from formulas over the Data sheet. No values are to be entered manually. Required figures:
+>
+>- Measurement count (COUNT)
+>- Sample standard deviation of the normalised column across the fleet (STDEV)
+>- Fleet sigma level, defined as 1 ÷ that standard deviation, i.e. the number of standard deviations between nominal and the tolerance limit. Standard engineering convention applies; no Six Sigma 1.5σ shift.
+>- Out-of-tolerance count (COUNTIF on outOfTol) and the corresponding rate
+>- Sanity check: the defect rate expected from a centred two-sided process at that sigma level, 2 × (1 − NORMSDIST(sigma level)). If the function is unavailable, state whether the observed rate is of the same order as that expected from a normal process at the calculated sigma level.
+>
+>Below the fleet figures, provide one row per spindle with the same measures: measurement count, STDEV of that spindle's block of normalised rows, sigma level, out-of-tolerance count and rate. Sort by sigma level, worst first.
+>
+>Constraints
+>
+>- Do not derive the sigma level from Cpk, and under no circumstances from the worst single characteristic. With 12–13 parts per characteristic, the lowest Cpk among 75 is sampling noise; that figure is the source of the current confusion.
+>- Do not perform any calculation outside the workbook. Every figure in the response must originate from a workbook formula.
+>- Run the audit on the workbook before responding.
+>
+>Deliverables
+>
+>The response must include the fleet sigma level to one decimal place, the measurement count, the out-of-tolerance count and rate, the per-spindle table, and a brief verdict on whether the sanity check agrees with the observed rate. If the observed defect rate is materially above the rate predicted by the sigma level, state this explicitly and identify the responsible spindles, since this indicates defects arising from specific causes rather than normal machine variation.
+>
 
-Data extraction
+and the same prompt for the single spindle:
 
-Retrieve every measurement from the MeasurementCharacteristic records across all ten spindles. Review the domain model before querying. Restrict the dataset to two-sided characteristics: retain rows where tolMinus is below zero and exclude form and position characteristics. For each row, capture the report's machine number mark, name, deviation, tolMinus, tolPlus and outOfTol.
-
-The expected volume is approximately 9,375 measurements (125 blades × 75 characteristics). Page through the records until the full set has been retrieved; a sample is not acceptable. If the full set cannot be loaded in a single pass, process one spindle at a time, approximately 975 rows each.
-
-Data sheet
-
-Place the raw rows on a Data sheet, one measurement per row, sorted by spindle so that each machine's rows are contiguous. Add a column expressing each deviation as a fraction of its own upper tolerance (deviation ÷ tolPlus). This normalises every characteristic and every machine to a common scale so that the fleet can be treated as a single process.
-
-Summary sheet
-
-Provide a Summary sheet built entirely from formulas over the Data sheet. No values are to be entered manually. Required figures:
-
-- Measurement count (COUNT)
-- Sample standard deviation of the normalised column across the fleet (STDEV)
-- Fleet sigma level, defined as 1 ÷ that standard deviation, i.e. the number of standard deviations between nominal and the tolerance limit. Standard engineering convention applies; no Six Sigma 1.5σ shift.
-- Out-of-tolerance count (COUNTIF on outOfTol) and the corresponding rate
-- Sanity check: the defect rate expected from a centred two-sided process at that sigma level, 2 × (1 − NORMSDIST(sigma level)). If the function is unavailable, state whether the observed rate is of the same order as that expected from a normal process at the calculated sigma level.
-
-Below the fleet figures, provide one row per spindle with the same measures: measurement count, STDEV of that spindle's block of normalised rows, sigma level, out-of-tolerance count and rate. Sort by sigma level, worst first.
-
-Constraints
-
-- Do not derive the sigma level from Cpk, and under no circumstances from the worst single characteristic. With 12–13 parts per characteristic, the lowest Cpk among 75 is sampling noise; that figure is the source of the current confusion.
-- Do not perform any calculation outside the workbook. Every figure in the response must originate from a workbook formula.
-- Run the audit on the workbook before responding.
-
-Deliverables
-
-The response must include the fleet sigma level to one decimal place, the measurement count, the out-of-tolerance count and rate, the per-spindle table, and a brief verdict on whether the sanity check agrees with the observed rate. If the observed defect rate is materially above the rate predicted by the sigma level, state this explicitly and identify the responsible spindles, since this indicates defects arising from specific causes rather than normal machine variation.
-`
-`Requirement: overall process sigma for spindle DMU-05 for the current week, derived from raw measurement data rather than the Cpk-based figure in the fleet report. The calculation is to follow standard shop-floor practice.
-
-Data extraction
-
-Retrieve every measurement from the MeasurementCharacteristic records for DMU-05. Review the domain model before querying. Restrict the dataset to two-sided characteristics: retain rows where tolMinus is below zero and exclude form and position characteristics. For each row, capture the report's machine number mark, name, deviation, tolMinus, tolPlus and outOfTol.
-
-The expected volume is approximately 975 measurements (12–13 blades × 75 characteristics). Page through the records until the full set has been retrieved; a sample is not acceptable.
-
-Data sheet
-
-Place the raw rows on a Data sheet, one measurement per row, sorted by characteristic name so that each characteristic's rows are contiguous. Add a column expressing each deviation as a fraction of its own upper tolerance (deviation ÷ tolPlus). This normalises every characteristic to a common scale so that the spindle can be treated as a single process.
-
-Summary sheet
-
-Provide a Summary sheet built entirely from formulas over the Data sheet. No values are to be entered manually. Required figures:
-
-- Measurement count (COUNT)
-- Sample standard deviation of the normalised column for the spindle (STDEV)
-- Spindle sigma level, defined as 1 ÷ that standard deviation, i.e. the number of standard deviations between nominal and the tolerance limit. Standard engineering convention applies; no Six Sigma 1.5σ shift.
-- Out-of-tolerance count (COUNTIF on outOfTol) and the corresponding rate
-- Sanity check: the defect rate expected from a centred two-sided process at that sigma level, 2 × (1 − NORMSDIST(sigma level)). If the function is unavailable, state whether the observed rate is of the same order as that expected from a normal process at the calculated sigma level.
-
-Below the spindle figures, provide one row per characteristic for diagnostic purposes only: measurement count, mean of the normalised deviation, STDEV, and out-of-tolerance count. Sort by out-of-tolerance count, then by mean normalised deviation, worst first.
-
-Constraints
-
-- Do not derive the spindle sigma level from Cpk, and under no circumstances from the worst single characteristic. With 12–13 parts per characteristic, the lowest Cpk among 75 is sampling noise; that figure is the source of the current confusion. The per-characteristic table is for locating causes, not for reporting capability.
-- Do not perform any calculation outside the workbook. Every figure in the response must originate from a workbook formula.
-- Run the audit on the workbook before responding.
-
-Deliverables
-
-The response must include the DMU-05 sigma level to one decimal place, the measurement count, the out-of-tolerance count and rate, the per-characteristic table, and a brief verdict on whether the sanity check agrees with the observed rate. If the observed defect rate is materially above the rate predicted by the sigma level, state this explicitly and identify the responsible characteristics, since this indicates defects arising from specific causes rather than normal machine variation.
-`
+>Requirement: overall process sigma for spindle DMU-05 for the current week, derived from raw measurement data rather than the Cpk-based figure in the fleet report. The calculation is to follow standard shop-floor practice.
+>
+>Data extraction
+>
+>Retrieve every measurement from the MeasurementCharacteristic records for DMU-05. Review the domain model before querying. Restrict the dataset to two-sided characteristics: retain rows where tolMinus is below zero and exclude form and position characteristics. For each row, capture the report's machine number mark, name, deviation, tolMinus, tolPlus and outOfTol.
+>
+>The expected volume is approximately 975 measurements (12–13 blades × 75 characteristics). Page through the records until the full set has been retrieved; a sample is not acceptable.
+>
+>Data sheet
+>
+>Place the raw rows on a Data sheet, one measurement per row, sorted by characteristic name so that each characteristic's rows are contiguous. Add a column expressing each deviation as a fraction of its own upper tolerance (deviation ÷ tolPlus). This normalises every characteristic to a common scale so that the spindle can be treated as a single process.
+>
+>Summary sheet
+>
+>Provide a Summary sheet built entirely from formulas over the Data sheet. No values are to be entered manually. Required figures:
+>
+>- Measurement count (COUNT)
+>- Sample standard deviation of the normalised column for the spindle (STDEV)
+>- Spindle sigma level, defined as 1 ÷ that standard deviation, i.e. the number of standard deviations between nominal and the tolerance limit. Standard engineering convention applies; no Six Sigma 1.5σ shift.
+>- Out-of-tolerance count (COUNTIF on outOfTol) and the corresponding rate
+>- Sanity check: the defect rate expected from a centred two-sided process at that sigma level, 2 × (1 − NORMSDIST(sigma level)). If the function is unavailable, state whether the observed rate is of the same order as that expected from a normal process at the calculated sigma level.
+>
+>Below the spindle figures, provide one row per characteristic for diagnostic purposes only: measurement count, mean of the normalised deviation, STDEV, and out-of-tolerance count. Sort by out-of-tolerance count, then by mean normalised deviation, worst first.
+>
+>Constraints
+>
+>- Do not derive the spindle sigma level from Cpk, and under no circumstances from the worst single characteristic. With 12–13 parts per characteristic, the lowest Cpk among 75 is sampling noise; that figure is the source of the current confusion. The per-characteristic table is for locating causes, not for reporting capability.
+>- Do not perform any calculation outside the workbook. Every figure in the response must originate from a workbook formula.
+>- Run the audit on the workbook before responding.
+>
+>Deliverables
+>
+>The response must include the DMU-05 sigma level to one decimal place, the measurement count, the out-of-tolerance count and rate, the per-characteristic table, and a brief verdict on whether the sanity check agrees with the observed rate. If the observed defect rate is materially above the rate predicted by the sigma level, state this explicitly and identify the responsible characteristics, since this indicates defects arising from specific causes rather than normal machine variation.
+>
 
 ## Running this example
 
