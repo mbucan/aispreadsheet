@@ -1,0 +1,14 @@
+/* Define your styles here */
+
+/* Measurement report rows whose result is not PASS */
+vaadin-grid::part(attention-row) {
+    background-color: var(--lumo-error-color-10pct, rgba(224, 36, 26, 0.12));
+    color: var(--lumo-error-text-color, #b71c1c);
+}
+
+/* Out-of-tolerance characteristic rows in the report detail grid */
+vaadin-grid::part(oot-row) {
+    background-color: var(--lumo-error-color-10pct, rgba(224, 36, 26, 0.12));
+    color: var(--lumo-error-text-color, #b71c1c);
+    font-weight: 600;
+}
